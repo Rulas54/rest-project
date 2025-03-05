@@ -45,6 +45,7 @@ public class Contacto {
 	
 	private String direccion;
 	
-	
+	@Version
+    private Long version;
 
 }
