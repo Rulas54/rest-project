@@ -22,7 +22,7 @@ public class Contacto {
 	
 	@NotNull(message = "Campo Obligatorio") //No deja que esta columna reciba datos nulos
 	@Column(name = "fechaNacimiento")
-	private String fechaNacimiento;
+	private Date fechaNacimiento;
 	
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
