@@ -1,5 +1,4 @@
 package edu.udelp.movil.restproject.model;
-import java.time.LocalDate;
 import java.util.Date;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -19,11 +18,11 @@ public class Contacto {
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")//No deja que esta columna reciba datos nulos
     @Column(length = 30)
-    private String nombre;
+    private String nombre; //Aqui esta el cambio que hice
 	
 	@NotNull(message = "Campo Obligatorio") //No deja que esta columna reciba datos nulos
 	@Column(name = "fechaNacimiento")
-	private LocalDate fechaNacimiento;
+	private String fechaNacimiento;
 	
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
@@ -45,7 +44,5 @@ public class Contacto {
 	
 	private String direccion;
 	
-	@Version
-    private Long version;
 
 }
