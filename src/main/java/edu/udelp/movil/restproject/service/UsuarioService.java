@@ -14,4 +14,7 @@ public interface UsuarioService {
 	 void remove (Long id);
 	 
 	 boolean existByEmailAndPassword (String email, String password);
+
+	 Usuario findByEmail(String email);
+
 }

@@ -44,4 +44,22 @@ public class UsuarioController {
 		return usuarioService.findById(id);
 	}
 	
+	@PostMapping("/login")
+	public Usuario login(@RequestBody Usuario usuario) {
+
+		Usuario usuarioTemp = new Usuario();
+		usuarioTemp.setCode("500");
+		usuarioTemp.setMensaje("No existe el usuario");
+
+
+		if(usuarioService.existByEmailAndPassword(usuario.getEmail(), usuario.getPassword())){
+
+			usuarioTemp = usuarioService.findByEmail(usuario.getEmail());
+			usuarioTemp.setCode("200");
+			usuarioTemp.setMensaje("OK");
+
+		}
+		return usuarioTemp;
+	}
+	
 }

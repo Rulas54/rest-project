@@ -16,8 +16,23 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	@Override
 	public Usuario save(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return usuarioRepository.save(usuario);
+		Usuario usuarioTemp = usuarioRepository.findByEmail(usuario.getEmail())
+												.orElse(null);
+
+		if (null != usuarioTemp && null != usuario.getId()
+				&& !usuarioTemp.getId().equals(usuario.getId())) {
+			usuario.setCode("500");
+			usuario.setMensaje("El usuario ya existe");
+		} if(usuarioTemp != null && null == usuario.getId()){
+			usuario.setCode("500");
+			usuario.setMensaje("El usuario ya existe");
+		} else {
+			usuario = usuarioRepository.save(usuario);
+			usuario.setCode("200");
+			usuario.setMensaje("OK");
+		}
+
+		return usuario;
 	}
 
 	@Override
@@ -43,5 +58,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 		// TODO Auto-generated method stub
 		return usuarioRepository.existsByEmailAndPassword(email, password);
 	}
-	
+
+	@Override
+	public Usuario findByEmail(String email) {
+		return usuarioRepository.findByEmail(email).orElse(new Usuario());
+	}
+
 }
