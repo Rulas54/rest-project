@@ -51,6 +51,14 @@ public class UsuarioController {
 		usuarioTemp.setCode("500");
 		usuarioTemp.setMensaje("No existe el usuario");
 
+		Usuario encontrado = usuarioService.findByEmail(usuario.getEmail());
+		if (null != encontrado.getId()  && !encontrado.getPassword().equals(usuario.getPassword())) {
+			usuarioTemp.setCode("401");
+			usuarioTemp.setMensaje("La contraseña es incorrecta");
+			return usuarioTemp;
+		}
+
+
 
 		if(usuarioService.existByEmailAndPassword(usuario.getEmail(), usuario.getPassword())){
 
@@ -59,6 +67,8 @@ public class UsuarioController {
 			usuarioTemp.setMensaje("OK");
 
 		}
+
+
 		return usuarioTemp;
 	}
 	
