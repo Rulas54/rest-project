@@ -32,11 +32,11 @@ public class UsuarioController {
 		return usuarioService.save(usuario);
 	}
 	
-	@PostMapping("/recuperar-password/{id}")
-	public Usuario recuperarPassword(@RequestBody Usuario usuario,
-									 @PathVariable Long id) {
-		usuario.setId(id);
-		return usuarioService.save(usuario);
+	@PostMapping("/recuperar-password")
+	public Usuario recuperarPassword(@RequestBody Usuario usuario){
+
+
+		return usuarioService.recuperarPassword(usuario);
 	}
 	
 	@PostMapping("/get/{id}")

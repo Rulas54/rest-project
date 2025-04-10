@@ -64,4 +64,28 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepository.findByEmail(email).orElse(new Usuario());
 	}
 
+	@Override
+	public Usuario recuperarPassword(Usuario usuario) {
+		Usuario usuarioTemp = usuarioRepository.findByEmail(usuario.getEmail()) //Verificar el correo
+				.orElse(null);
+
+		if (null == usuarioTemp){
+			usuarioTemp = new Usuario();
+			usuarioTemp.setCode("500");
+			usuarioTemp.setMensaje("El usuario no existe");
+
+		} else {
+			usuarioTemp.setPassword(usuario.getPassword()); //Resetear Password
+			usuarioTemp = usuarioRepository.save(usuarioTemp);
+			usuarioTemp.setCode("200");
+			usuario.setMensaje("Cambio de password");
+		}
+
+
+		return usuarioTemp;
+
+
+	}
+
+
 }
