@@ -1,4 +1,5 @@
 package edu.udelp.movil.restproject.model;
+import java.time.LocalDate;
 import java.util.Date;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -22,8 +23,7 @@ public class Contacto {
 	
 	@NotNull(message = "Campo Obligatorio") //No deja que esta columna reciba datos nulos
 	@Column(name = "fechaNacimiento")
-	private Date fechaNacimiento;
-	
+	private LocalDate fechaNacimiento;
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
 	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@(gmail\\.com|outlook\\.com)$",
