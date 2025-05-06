@@ -23,7 +23,7 @@ public class Contacto {
 	
 	@NotNull(message = "Campo Obligatorio") //No deja que esta columna reciba datos nulos
 	@Column(name = "fechaNacimiento")
-	private LocalDate fechaNacimiento;
+	private String fechaNacimiento;
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
 	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@(gmail\\.com|outlook\\.com)$",
@@ -33,11 +33,12 @@ public class Contacto {
 
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
-	@Column(length = 10)
 	@Pattern(
-	        regexp = "^[0-9]{10}$", //Unicamente numeros y {10} que nomás puede tener 10 digitos no mas
-	        message = "El número de teléfono debe tener exactamente 10 dígitos"
-	    )
+			regexp = "^([0-9]{10})(,([0-9]{10})){0,19}$", // Permite de 1 a 20 números de teléfono de 10 dígitos separados por comas
+			message = "El número de teléfono debe tener exactamente 10 dígitos y pueden ser hasta 20, separados por comas"
+	)
+	@Column(length = 300) // Ajusta el tamaño del campo si es necesario
+
 	private String numeroTelefono;
 
 	private String foto;  //Se pone String porque se va a poner la ruta de la foto
