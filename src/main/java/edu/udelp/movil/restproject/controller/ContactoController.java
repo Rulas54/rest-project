@@ -28,13 +28,19 @@ public class ContactoController {
 	public Contacto add(@Valid @RequestBody Contacto contacto) {
 		return service.save(contacto);
 	}
-	
-	@PostMapping("/edit/{id}")
+
+    @PostMapping("/edit/{id}")
     public Contacto edit(@Valid @RequestBody Contacto contacto, @PathVariable Long id){
-        contacto.setId(id);
-        return service.save(contacto);
+        Contacto existente = service.findById(id);
+        if (existente != null) {
+            contacto.setId(id); // asegurarse que el ID es correcto
+            return service.save(contacto); // actualiza
+        } else {
+            throw new RuntimeException("Contacto con ID " + id + " no encontrado");
+        }
     }
-    
+
+
     @PostMapping("/get/{id}")
     public Contacto get(@PathVariable Long id){
         return service.findById(id);
