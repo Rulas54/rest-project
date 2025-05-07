@@ -1,6 +1,8 @@
 package edu.udelp.movil.restproject.model;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -20,10 +22,7 @@ public class Contacto {
     @NotEmpty(message = "Campo Obligatorio")//No deja que esta columna reciba datos nulos
     @Column(length = 30)
     private String nombre; //Aqui esta el cambio que hice
-	
-	@NotNull(message = "Campo Obligatorio") //No deja que esta columna reciba datos nulos
-	@Column(name = "fechaNacimiento")
-	private String fechaNacimiento;
+
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
 	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@(gmail\\.com|outlook\\.com)$",
@@ -34,14 +33,18 @@ public class Contacto {
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
 	@Pattern(
-			regexp = "^([0-9]{10})(,([0-9]{10})){0,19}$", // Permite de 1 a 20 números de teléfono de 10 dígitos separados por comas
+			regexp = "^([0-9]{10})$", // Permite de 1 a 20 números de teléfono de 10 dígitos separados por comas
 			message = "El número de teléfono debe tener exactamente 10 dígitos y pueden ser hasta 20, separados por comas"
 	)
 	@Column(length = 300) // Ajusta el tamaño del campo si es necesario
 
 	private String numeroTelefono;
 
-	private String foto;  //Se pone String porque se va a poner la ruta de la foto
+	@ElementCollection
+	private List<String> numeroAdicional;
+
+	@ElementCollection
+	private List<String> correoAdicional;
 	
 	private String direccion;
 	
