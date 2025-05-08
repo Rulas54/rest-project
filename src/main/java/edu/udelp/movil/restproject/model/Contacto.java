@@ -33,12 +33,13 @@ public class Contacto {
 	@NotNull(message = "Campo Obligatorio")
     @NotEmpty(message = "Campo Obligatorio")
 	@Pattern(
-			regexp = "^([0-9]{10})$", // Permite de 1 a 20 números de teléfono de 10 dígitos separados por comas
-			message = "El número de teléfono debe tener exactamente 10 dígitos y pueden ser hasta 20, separados por comas"
+			regexp = "^([0-9]{10})$",
+			message = "El número de teléfono debe tener exactamente 10 dígitos"
 	)
 	@Column(length = 300) // Ajusta el tamaño del campo si es necesario
 
 	private String numeroTelefono;
+
 
 	@ElementCollection
 	private List<String> numeroAdicional;
