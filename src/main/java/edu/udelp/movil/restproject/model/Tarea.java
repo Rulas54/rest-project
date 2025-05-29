@@ -24,6 +24,12 @@ public class Tarea {
 
     private String descripcion;
 
+    private String fechaVencimiento;
+
+    private String estado;
+
+    private String etiqueta;
+
     @Max(value = 5, message = "La prioridad maxima es de 5")
     @Min(value = 1, message = "La prioridad minima es de 1")
     private Integer prioridad;
